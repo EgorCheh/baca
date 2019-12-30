@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1079638353874",
+    "firebase_url": "https://baca-4728b.firebaseio.com",
+    "project_id": "baca-4728b",
+    "storage_bucket": "baca-4728b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079638353874:android:dddf271d4c360e66c4ca0b",
+        "android_client_info": {
+          "package_name": "com.example.rx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1079638353874-169h3fu4t15asqq50v0ita1pld34fhsp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rx",
+            "certificate_hash": "e4fc2bbe19d178a5d2bde8caf577961443cb3db5"
+          }
+        },
+        {
+          "client_id": "1079638353874-2iqu1dgs30kt2cn5hk3v8sovel3u5a5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbqMge7XIXBOVtMIuYVhgQKH67fUHrnq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1079638353874-2iqu1dgs30kt2cn5hk3v8sovel3u5a5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
