@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startActivity(new Intent(getApplicationContext(),TopPoints.class));
         MapKitFactory.setApiKey("f1b53a01-68ff-4b27-9d15-0f1738c860b3");
         MapKitFactory.initialize(this);
         setContentView(R.layout.activity_main);
