@@ -7,37 +7,38 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.yandex.mapkit.MapKitFactory;
+import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.mapview.MapView;
+import com.yandex.runtime.image.ImageProvider;
 
 
 public class MainActivity extends AppCompatActivity {
     private MapView mapView;
-    private ImageButton buttonAdd;
     private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivity(new Intent(getApplicationContext(),TopPoints.class));
         MapKitFactory.setApiKey("f1b53a01-68ff-4b27-9d15-0f1738c860b3");
         MapKitFactory.initialize(this);
         setContentView(R.layout.activity_main);
         mapView = findViewById(R.id.mapview);
-        buttonAdd = findViewById(R.id.btn_add_point);
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AddPointActivity.class));
-            }
-        });
+
         db = FirebaseFirestore.getInstance();
 
 
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         })*/;
-     /*   db.collection("points")
+        db.collection("points")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("Firebase", document.getId() + " => " + document.getData().get("gp"));
                                 GeoPoint geoPoint = (GeoPoint) document.getData().get("gp");
 
-                                mapview.getMap().getMapObjects().addPlacemark(
+                                mapView.getMap().getMapObjects().addPlacemark(
                                         new Point(geoPoint.getLatitude(),geoPoint.getLongitude()),
                                         ImageProvider.fromBitmap(getBitmapFromVectorDrawable(getApplicationContext(),R.drawable.ic_person_pin)));
                             }
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.w("Firebase", "Error getting documents.", task.getException());
                         }
                     }
-                });*/
+                });
 
 
 

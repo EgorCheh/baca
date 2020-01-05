@@ -16,4 +16,6 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="btnChooseImage">Choose  Image</string>
+    <string name="facebook_app_id">333956173933534</string>
+    <string name="fb_login_protocol_scheme">fb333956173933534</string>
 </resources>
