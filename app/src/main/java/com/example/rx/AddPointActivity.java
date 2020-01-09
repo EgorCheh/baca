@@ -107,14 +107,16 @@ public class AddPointActivity extends AppCompatActivity {
                   }
 
     private void uploadNewPoint(){
-
-        GeoPoint geoPoint = new GeoPoint(56.5645,24.0623);
+        Intent intent = getIntent();
+        GeoPoint geoPoint = new GeoPoint(intent.getDoubleExtra("getLatitude",0),intent.getDoubleExtra("getLongitude",0));
         String description = etDescription.getText().toString();
         String title = etTitle.getText().toString();
         point.put("gp", geoPoint);
         point.put("description",description);
         point.put("title", title);
         point.put("image",id.toString());
+        point.put("like",0);
+
 
         db.collection("points")
                 .add(point)

@@ -1,6 +1,7 @@
 package com.example.rx;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -23,17 +24,29 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class loginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private String TAG="pidr";
+    private String TAG="myLOG";
     private FirebaseUser currentUser;
     private CallbackManager mCallbackManager;
     private Profile profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+
+
+       /* Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("http://maps.google.com/maps?daddr=55.783330,37.587649"));
+            startActivity(intent)*/;
+
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         profile= Profile.getCurrentProfile();
+
+
+        chekUser();
+
+        setContentView(R.layout.activity_login);
+
+
         final EditText etEmail,etPassword;
         etEmail = findViewById(R.id.et_log_email);
         etPassword = findViewById(R.id.et_log_password);
@@ -89,17 +102,12 @@ public class loginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             startActivity(new Intent(getApplicationContext(),Menu.class));
 
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-
                         }
-
-                        // ...
                     }
                 });
     }
@@ -107,5 +115,20 @@ public class loginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void chekUser()
+    {
+        Log.d(TAG,"profile "+profile+"  Auth "+currentUser);
+        if(currentUser==null&&profile==null)
+        {
+            Log.d(TAG,"net user");
+        }
+        else {
+            Log.d(TAG,"est");
+            startActivity(new Intent(getApplicationContext(),Menu.class));
+            finish();
+        }
+
     }
 }

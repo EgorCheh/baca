@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.facebook.Profile;
+import com.facebook.appevents.suggestedevents.ViewOnClickListener;
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Menu extends AppCompatActivity {
     @Override
@@ -20,7 +23,7 @@ public class Menu extends AppCompatActivity {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AddPointActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
 
@@ -36,7 +39,22 @@ public class Menu extends AppCompatActivity {
         btnMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(),Mai.class));
+            }
+        });
+
+        Button btnLogOut = findViewById(R.id.log_out);
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),loginActivity.class));
+                Profile profile = Profile.getCurrentProfile();
+                if(profile==null){
+                    FirebaseAuth.getInstance().signOut();
+                }else {
+                     LoginManager.getInstance().logOut();
+                }
+                finish();
             }
         });
     }
