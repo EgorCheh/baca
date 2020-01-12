@@ -33,9 +33,7 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-       /* Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?daddr=55.783330,37.587649"));
-            startActivity(intent)*/;
+
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();

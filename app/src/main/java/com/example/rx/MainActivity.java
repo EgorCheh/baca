@@ -140,14 +140,19 @@ public class MainActivity extends AppCompatActivity  {
                                 Log.d("Firebase", document.getId() + " => " + document.getData().get("gp"));
                                 GeoPoint geoPoint = (GeoPoint) document.getData().get("gp");
 
-                                mapView.getMap().getMapObjects().addPlacemark(
-                                        new Point(geoPoint.getLatitude(),geoPoint.getLongitude()),
-                                        ImageProvider.fromBitmap(getBitmapFromVectorDrawable(getApplicationContext(),R.drawable.ic_person_pin)))
-                                        .addTapListener(new MapObjectTapListener() {
+                                PlacemarkMapObject newObj = mapView.getMap().getMapObjects().addPlacemark(
+                                        new Point(geoPoint.getLatitude(), geoPoint.getLongitude()),
+                                        ImageProvider.fromBitmap(getBitmapFromVectorDrawable(getApplicationContext(), R.drawable.ic_person_pin)));
+                                newObj.setUserData(document.getId());
+                                newObj.addTapListener(new MapObjectTapListener() {
                                     @Override
                                     public boolean onMapObjectTap(@NonNull MapObject mapObject, @NonNull Point point) {
-                                       // point.getLongitude()+ point.getLatitude();
+                                        Log.d("wtf","   "+mapObject.getUserData());
 
+
+                                        Intent intent = new Intent(getApplicationContext(),TopPointsDetails.class);
+                                        intent.putExtra("point",mapObject.getUserData().toString());
+                                        startActivity(intent);
                                         return false;
                                     }
                                 });

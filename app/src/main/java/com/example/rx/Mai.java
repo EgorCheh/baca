@@ -60,7 +60,7 @@ public class Mai extends Activity implements UserLocationObjectListener {
         MapKit mapKit = MapKitFactory.getInstance();
         userLocationLayer = mapKit.createUserLocationLayer(mapView.getMapWindow());
         userLocationLayer.setVisible(true);
-        userLocationLayer.setHeadingEnabled(true);
+        //userLocationLayer.setHeadingEnabled(true);
 
 
         userLocationLayer.setObjectListener(this);
@@ -82,32 +82,11 @@ public class Mai extends Activity implements UserLocationObjectListener {
 
     @Override
     public void onObjectAdded(UserLocationView userLocationView) {
-        userLocationLayer.setAnchor(
-                new PointF((float)(mapView.getWidth() * 0.5), (float)(mapView.getHeight() * 0.5)),
-                new PointF((float)(mapView.getWidth() * 0.5), (float)(mapView.getHeight() * 0.83)));
 
         userLocationView.getArrow().setIcon(ImageProvider.fromResource(
                 this, R.drawable.ic_person_pin));
 
         CompositeIcon pinIcon = userLocationView.getPin().useCompositeIcon();
-
-        pinIcon.setIcon(
-                "icon",
-                ImageProvider.fromResource(this, R.drawable.ic_person_pin),
-                new IconStyle().setAnchor(new PointF(0f, 0f))
-                        .setRotationType(RotationType.ROTATE)
-                        .setZIndex(0f)
-                        .setScale(1f)
-        );
-
-        pinIcon.setIcon(
-                "pin",
-                ImageProvider.fromResource(this, R.drawable.ic_person_pin),
-                new IconStyle().setAnchor(new PointF(0.5f, 0.5f))
-                        .setRotationType(RotationType.ROTATE)
-                        .setZIndex(1f)
-                        .setScale(0.5f)
-        );
 
         userLocationView.getAccuracyCircle().setFillColor(Color.LTGRAY);
     }
