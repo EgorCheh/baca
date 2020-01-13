@@ -3,6 +3,7 @@
     package="com.example.rx">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -47,7 +48,9 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
+        <provider android:authorities="com.facebook.app.FacebookContentProvider{APP_ID}"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
     </application>
 
 </manifest>

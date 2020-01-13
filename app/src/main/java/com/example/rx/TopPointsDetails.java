@@ -16,6 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.Profile;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -52,13 +56,14 @@ public class TopPointsDetails extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String pointId;
     private GeoPoint geoPoint;
+    private Uri imegeUri;
+    private TextView tvTitle,tvDescription;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_points_details);
         Intent intent = getIntent();
-        final TextView tvTitle,tvDescription;
         final ImageView imageView;
         tvDescription=findViewById(R.id.tv_description_detail);
         tvTitle=findViewById(R.id.tv_title_detail);
@@ -93,12 +98,15 @@ public class TopPointsDetails extends AppCompatActivity {
                              Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                                      Uri.parse("http://maps.google.com/maps?daddr="+lat+","+lon));
                              startActivity(intent);
+
                          }
                      }
                  });
 
             }
         });
+
+
         Button btn = findViewById(R.id.detail_btn_set_comment);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +146,9 @@ public class TopPointsDetails extends AppCompatActivity {
                         mStorageRef.child(document.getData().get("image").toString()+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Picasso.get().load(uri).into(imageView);
+                               imegeUri = uri;
+                               Picasso.get().load(uri).into(imageView);
+                               setShareButton();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -157,6 +167,19 @@ public class TopPointsDetails extends AppCompatActivity {
         });
 
 
+
+    }
+
+    private void setShareButton() {
+
+        ShareButton shareButton = findViewById(R.id.fb_share_button);// Sharing the content to facebook
+
+
+        ShareLinkContent content = new ShareLinkContent.Builder()
+                .setQuote("I'm going to "+ tvTitle.getText())
+                .setContentUrl(Uri.parse("https://github.com/EgorCheh/baca"))
+                .build();
+        shareButton.setShareContent(content);
 
     }
 
