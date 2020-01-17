@@ -18,7 +18,6 @@ import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -150,7 +149,7 @@ public class MainActivity extends AppCompatActivity  {
                                         Log.d("wtf","   "+mapObject.getUserData());
 
 
-                                        Intent intent = new Intent(getApplicationContext(),TopPointsDetails.class);
+                                        Intent intent = new Intent(getApplicationContext(), PointsDetails.class);
                                         intent.putExtra("point",mapObject.getUserData().toString());
                                         startActivity(intent);
                                         return false;

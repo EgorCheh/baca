@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,7 +18,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TopPoints extends AppCompatActivity {
+public class Points extends AppCompatActivity {
     private HashMap<String, Object> point;
     private ArrayList<HashMap<String, Object>> listPoints = new ArrayList<>();
     private MySimpleAdapter adapter;
@@ -42,6 +41,7 @@ public class TopPoints extends AppCompatActivity {
                                 point = new HashMap<>();
                                 point.put("title",document.getData().get("title"));
                                 point.put("image",document.getData().get("image"));
+                                point.put("point",document.getId());
                                 listPoints.add(point);
                             }
 
@@ -63,7 +63,9 @@ public class TopPoints extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getApplicationContext(),TopPointsDetails.class));
+                Intent intent = new Intent(getApplicationContext(), PointsDetails.class);
+                intent.putExtra("point",listPoints.get(position).get("point").toString());
+                startActivity(intent);
             }
         });
         listView.setAdapter(adapter);

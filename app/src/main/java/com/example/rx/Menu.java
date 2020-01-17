@@ -1,16 +1,13 @@
 package com.example.rx;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.facebook.Profile;
-import com.facebook.appevents.suggestedevents.ViewOnClickListener;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -27,11 +24,11 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        Button btnTop = findViewById(R.id.btn_top);
+        Button btnTop = findViewById(R.id.btn_points);
         btnTop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),TopPoints.class));
+                startActivity(new Intent(getApplicationContext(), Points.class));
             }
         });
 

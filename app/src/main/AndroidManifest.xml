@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rx">
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,8 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
+        <activity android:name=".Events"></activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".Mai" />
         <activity android:name=".loginActivity">
@@ -23,8 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Menu" />
-        <activity android:name=".TopPointsDetails" />
-        <activity android:name=".TopPoints" />
+        <activity android:name=".PointsDetails" />
+        <activity android:name=".Points" />
         <activity android:name=".AddPointActivity" />
         <activity android:name=".MainActivity" />
 
@@ -48,9 +48,11 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <provider android:authorities="com.facebook.app.FacebookContentProvider{APP_ID}"
+
+        <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
+            android:authorities="com.facebook.app.FacebookContentProvider{APP_ID}"
+            android:exported="true" />
     </application>
 
 </manifest>

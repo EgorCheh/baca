@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PointsDetails">
+    tools:context=".Events">
 
     <TextView
         android:id="@+id/tv_title_detail"
@@ -70,8 +70,6 @@
         app:layout_constraintGuide_percent="0.55"
         app:layout_constraintTop_toTopOf="parent" />
 
-   =
-
     <ListView
         android:id="@+id/lv_comment"
         android:layout_width="0dp"
@@ -118,27 +116,5 @@
             android:layout_weight="0"
             android:text="set " />
     </LinearLayout>
-
-    <Switch
-        android:id="@+id/swch_like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/tv_count_like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
-        app:layout_constraintStart_toEndOf="@+id/swch_like"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98" />
 
 </android.support.constraint.ConstraintLayout>

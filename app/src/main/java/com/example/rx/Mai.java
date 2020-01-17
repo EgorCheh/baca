@@ -3,7 +3,6 @@ package com.example.rx;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -20,20 +19,14 @@ import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.layers.ObjectEvent;
 import com.yandex.mapkit.map.CameraPosition;
 import com.yandex.mapkit.map.CompositeIcon;
-import com.yandex.mapkit.map.IconStyle;
 import com.yandex.mapkit.map.MapObject;
 import com.yandex.mapkit.map.MapObjectTapListener;
-import com.yandex.mapkit.map.MapWindow;
 import com.yandex.mapkit.map.PlacemarkMapObject;
-import com.yandex.mapkit.map.RotationType;
 import com.yandex.mapkit.mapview.MapView;
 import com.yandex.mapkit.user_location.UserLocationLayer;
 import com.yandex.mapkit.user_location.UserLocationObjectListener;
 import com.yandex.mapkit.user_location.UserLocationView;
 import com.yandex.runtime.image.ImageProvider;
-
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 import static com.example.rx.MainActivity.getBitmapFromVectorDrawable;
 
@@ -120,7 +113,7 @@ public class Mai extends Activity implements UserLocationObjectListener {
                                                 Log.d("wtf","   "+mapObject.getUserData());
 
 
-                                                Intent intent = new Intent(getApplicationContext(),TopPointsDetails.class);
+                                                Intent intent = new Intent(getApplicationContext(), PointsDetails.class);
                                                 intent.putExtra("point",mapObject.getUserData().toString());
                                                 startActivity(intent);
                                                 return false;
