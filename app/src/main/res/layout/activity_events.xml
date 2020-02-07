@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".Events">
 
     <TextView
@@ -42,7 +43,8 @@
         android:id="@+id/btn_to_rout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ROUT"
+        android:background="@drawable/background_button"
+        android:text="ROUTE"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.97"
@@ -74,6 +76,7 @@
         android:id="@+id/lv_comment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/background_list_view_points"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +88,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,6 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:background="@drawable/background_button"
             android:text="set " />
     </LinearLayout>
 

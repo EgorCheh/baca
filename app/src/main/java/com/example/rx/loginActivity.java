@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -95,19 +96,24 @@ public class loginActivity extends AppCompatActivity {
     }
     private void signIn(String email, String password)
     {
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmail:success");
-                            startActivity(new Intent(getApplicationContext(),Menu.class));
+        if(email.isEmpty()||password.isEmpty()) {
+            Toast.makeText(this,"Error",Toast.LENGTH_LONG).show();
+        } else {
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "signInWithEmail:success");
+                                startActivity(new Intent(getApplicationContext(), Menu.class));
 
-                        } else {
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            } else {
+                                Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }
-                });
+                    });
+        }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

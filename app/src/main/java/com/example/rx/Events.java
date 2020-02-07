@@ -27,9 +27,9 @@ public class Events extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_points);
+        setContentView(R.layout.activity_points);
         db = FirebaseFirestore.getInstance();
-        db.collection("points")
+        db.collection("events")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

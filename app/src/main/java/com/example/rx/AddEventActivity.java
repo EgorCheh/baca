@@ -6,31 +6,35 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class AddPointActivity extends AppCompatActivity {
+public class AddEventActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     private FirebaseFirestore db;
     private ImageView imageView;
@@ -42,7 +46,7 @@ public class AddPointActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_point);
+        setContentView(R.layout.activity_add_event);
 
          etTitle = findViewById(R.id.et_title);
          etDescription = findViewById(R.id.et_description);
@@ -65,6 +69,7 @@ public class AddPointActivity extends AppCompatActivity {
         });
 
     }
+    
     private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -117,9 +122,10 @@ public class AddPointActivity extends AppCompatActivity {
         point.put("title", title);
         point.put("image",id.toString());
         point.put("like",0);
+        point.put("date", Timestamp.now());
 
 
-        db.collection("points")
+        db.collection("events")
                 .add(point)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override

@@ -4,59 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".Menu">
 
-    <ImageButton
-        android:id="@+id/btn_add_point"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294"
-        app:srcCompat="@drawable/ic_add_circle_outline_black_24dp" />
-
     <Button
-        android:id="@+id/btn_points"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="points"
+        android:id="@+id/btn_map"
+        android:layout_width="241dp"
+        android:layout_height="76dp"
+        android:background="@drawable/background_button"
+        android:contentDescription="@string/description"
+        android:text="Map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/btn_points"
+        android:layout_width="224dp"
+        android:layout_height="82dp"
+        android:background="@drawable/background_button"
+        android:text="points"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <Button
         android:id="@+id/btn_events"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="242dp"
+        android:layout_height="87dp"
+        android:background="@drawable/background_button"
         android:text="events"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.14999998" />
-
-    <Button
-        android:id="@+id/btn_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Main"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.692" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <Button
         android:id="@+id/log_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/background_button"
         android:text="@string/com_facebook_loginview_log_out_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,4 +55,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.01999998" />
+
 </android.support.constraint.ConstraintLayout>

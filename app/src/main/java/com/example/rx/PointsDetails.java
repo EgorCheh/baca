@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -39,7 +40,6 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,7 +56,7 @@ public class PointsDetails extends AppCompatActivity {
     private String pointId;
     private GeoPoint geoPoint;
     private TextView tvTitle,tvDescription,tvLikeCount;
-    private Switch swchLike;
+    private SwitchCompat swchLike;
     private EditText etComment;
     private ImageView imageView;
     private Map<String, Object> updateMap;
@@ -67,7 +67,7 @@ public class PointsDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_points_details);
+        setContentView(R.layout.activity_points_details);
         Intent intent = getIntent();
         tvLikeCount=findViewById(R.id.tv_count_like);
         swchLike=findViewById(R.id.swch_like);
@@ -161,8 +161,9 @@ public class PointsDetails extends AppCompatActivity {
                         mStorageRef.child(document.getData().get("image").toString()+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Picasso.get().load(uri).into(imageView);
+                                Picasso.get().load(uri).resize(imageView.getWidth(),imageView.getHeight()).into(imageView);
                                setShareButton();
+                                hideKeyboard();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -173,6 +174,44 @@ public class PointsDetails extends AppCompatActivity {
 
                     } else {
                         Log.d(TAG, "No such document");
+                        DocumentReference docRef = db.collection("events").document(pointId);
+                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    assert document != null;
+                                    if (document.exists()) {
+                                        Log.d(TAG, "DocumentSnapshot data: ");
+                                        tvTitle.setText(document.getData().get("title").toString());
+                                        tvDescription.setText(document.getData().get("description").toString());
+                                        tvLikeCount.setText(document.getData().get("like").toString());
+                                        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
+                                        mStorageRef.child(document.getData().get("image").toString()+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                Picasso.get().load(uri).into(imageView);
+                                                setShareButton();
+                                                hideKeyboard();
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception exception) {
+
+                                            }
+                                        });
+
+                                    } else {
+                                        Log.d(TAG, "No such document");
+
+
+                                    }
+                                } else {
+                                    Log.d(TAG, "get failed with ", task.getException());
+                                }
+                            }
+                        });
+
                     }
                 } else {
                     Log.d(TAG, "get failed with ", task.getException());
@@ -232,9 +271,6 @@ public class PointsDetails extends AppCompatActivity {
 
             }
         });
-
-
-
 
 
     }

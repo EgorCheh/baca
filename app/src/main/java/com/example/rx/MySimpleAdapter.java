@@ -31,7 +31,7 @@ public class MySimpleAdapter extends SimpleAdapter {
         mStorageRef.child(value+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(imageView);
+                Picasso.get().load(uri).resize(imageView.getWidth(),imageView.getHeight()).into(imageView);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".PointsDetails">
 
     <TextView
@@ -21,7 +22,9 @@
         android:id="@+id/tv_description_detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@android:drawable/screen_background_light_transparent"
         android:text="TextView"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,15 +43,15 @@
 
     <Button
         android:id="@+id/btn_to_rout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ROUT"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_car"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintHorizontal_bias="0.955"
         app:layout_constraintStart_toStartOf="@+id/imageView_detail"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.875" />
 
     <com.facebook.share.widget.ShareButton
         android:id="@+id/fb_share_button"
@@ -70,12 +73,13 @@
         app:layout_constraintGuide_percent="0.55"
         app:layout_constraintTop_toTopOf="parent" />
 
-   =
+    =
 
     <ListView
         android:id="@+id/lv_comment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@android:drawable/screen_background_dark_transparent"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,12 +91,13 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.99">
+        app:layout_constraintVertical_bias="1.0">
 
         <ImageView
             android:id="@+id/detail_iv_profile"
@@ -113,32 +118,38 @@
 
         <Button
             android:id="@+id/detail_btn_set_comment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="51dp"
+            android:layout_height="45dp"
             android:layout_weight="0"
-            android:text="set " />
+            android:background="@drawable/ic_comment" />
     </LinearLayout>
 
-    <Switch
+    <android.support.v7.widget.SwitchCompat
         android:id="@+id/swch_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:thumb="@drawable/ic_like_true"
+
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.862" />
 
     <TextView
         android:id="@+id/tv_count_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="5"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toEndOf="@+id/swch_like"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintVertical_bias="0.862" />
 
 </android.support.constraint.ConstraintLayout>

@@ -16,7 +16,7 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        ImageButton buttonAdd = findViewById(R.id.btn_add_point);
+        Button buttonAdd = findViewById(R.id.btn_map);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -24,21 +24,14 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        Button btnTop = findViewById(R.id.btn_points);
-        btnTop.setOnClickListener(new View.OnClickListener() {
+        Button btnPoints = findViewById(R.id.btn_points);
+        btnPoints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Points.class));
             }
         });
 
-        Button btnMain = findViewById(R.id.btn_main);
-        btnMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Mai.class));
-            }
-        });
 
         Button btnLogOut = findViewById(R.id.log_out);
         btnLogOut.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +45,13 @@ public class Menu extends AppCompatActivity {
                      LoginManager.getInstance().logOut();
                 }
                 finish();
+            }
+        });
+        Button btnEvents = findViewById(R.id.btn_events);
+        btnEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Events.class));
             }
         });
     }

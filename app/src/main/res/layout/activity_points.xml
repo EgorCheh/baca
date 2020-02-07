@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".Points">
 
     <ListView
         android:id="@+id/lv_top_point"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:dividerHeight="10dp"
+        android:footerDividersEnabled="false"
+        android:headerDividersEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

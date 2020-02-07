@@ -16,19 +16,29 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 
 @RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
+public class MenuUITest {
 
     @Rule
     public ActivityTestRule mActivityTestRule = new ActivityTestRule<>(Menu.class);
 
     @Test
     public void clickButtonMap(){
-        onView(withId(R.id.btn_main)).perform(click());
+        onView(withId(R.id.btn_map)).perform(click());
         onView(withId(R.id.mapview)).check(matches(isDisplayed()));
     }
     @Test
     public void clickButtonPoints(){
         onView(withId(R.id.btn_points)).perform(click());
         onView(withId(R.id.lv_top_point)).check(matches(isDisplayed()));
+    }
+    @Test
+    public void clickButtonEvents(){
+        onView(withId(R.id.btn_points)).perform(click());
+        onView(withId(R.id.lv_top_point)).check(matches(isDisplayed()));
+    }
+    @Test
+    public void clickButtonLogout(){
+        onView(withId(R.id.log_out)).perform(click());
+        onView(withId(R.id.btn_signIn)).check(matches(isDisplayed()));
     }
 }
