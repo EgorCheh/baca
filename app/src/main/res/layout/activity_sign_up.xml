@@ -21,6 +21,19 @@
         app:layout_constraintVertical_bias="0.344" />
 
     <EditText
+        android:id="@+id/et_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65" />
+
+    <EditText
         android:id="@+id/et_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,10 +67,9 @@
         android:text="set user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691" />
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
 
 </android.support.constraint.ConstraintLayout>

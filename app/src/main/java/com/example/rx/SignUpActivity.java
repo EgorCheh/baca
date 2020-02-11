@@ -11,14 +11,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
+
+import java.util.HashMap;
 
 public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    private EditText etEmail, etPassword, etPassword2;
-
+    private EditText etEmail, etPassword, etPassword2,etName;
+    private FirebaseFirestore db;
 
 
     @Override
@@ -38,8 +46,8 @@ public class SignUpActivity extends AppCompatActivity {
                 setUser();
             }
         });
-
-
+        etName=findViewById(R.id.et_name);
+        db = FirebaseFirestore.getInstance();
 
     }
 
@@ -48,15 +56,19 @@ public class SignUpActivity extends AppCompatActivity {
       String email =etEmail.getText().toString().trim();
       String password = etPassword.getText().toString().trim();
       String password2 = etPassword2.getText().toString().trim();
+      String name =etName.getText().toString().trim();
         if(check(password2,password,email))
         mAuth.createUserWithEmailAndPassword(email,password )
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
+                            uploadName();
                             Toast.makeText(getApplicationContext(), "Authentication ok.",
                                     Toast.LENGTH_SHORT).show();
+
+
+
                         } else {
                             Toast.makeText(getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -75,12 +87,12 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"empty error",Toast.LENGTH_LONG).show();
             return false;
         }
-        if(password.contentEquals(password2))
+      /*  if(password.contentEquals(password2))
         {
             Toast.makeText(getApplicationContext(),"equals error",Toast.LENGTH_LONG).show();
             return false;
 
-        }
+        }*/
 
 
         return true;
@@ -103,5 +115,18 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+    }
+    private void uploadName(){
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        HashMap<Object, Object> userMap = new HashMap<>();
+        userMap.put("user",etName.getText().toString().trim());
+
+        db.collection("users")
+                .document(currentUser.getUid())
+                .set(userMap);
+
+
     }
 }

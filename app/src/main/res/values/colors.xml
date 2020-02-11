@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorClick">#7A7777</color>
+    <color name="backfround_line">#000000</color>
 </resources>

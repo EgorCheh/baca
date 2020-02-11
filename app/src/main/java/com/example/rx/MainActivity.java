@@ -51,10 +51,7 @@ public class MainActivity extends AppCompatActivity implements UserLocationObjec
     private CameraListener cameraListener = new CameraListener() {
         @Override
         public void onCameraPositionChanged(@NonNull Map map, @NonNull CameraPosition cameraPosition, @NonNull CameraUpdateSource cameraUpdateSource, boolean b) {
-           /*  Log.d("wtf","log: "+cameraPosition.getTarget().getLongitude()+
-                                "   lat"+cameraPosition.getTarget().getLatitude());*/
              cameraCurrentPoint.setGeometry(cameraPosition.getTarget());
-
         }
     };
     private PlacemarkMapObject cameraCurrentPoint;
@@ -97,8 +94,7 @@ public class MainActivity extends AppCompatActivity implements UserLocationObjec
 
 
         mapView.getMap().addCameraListener(cameraListener);
-        /*Log.d("wtf","log: "+cameraPosition.getTarget().getLongitude()+
-                                "   lat"+cameraPosition.getTarget().getLatitude());*/
+
         Button addPoint = findViewById(R.id.btn_toAddPoint);
         addPoint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,9 +170,6 @@ public class MainActivity extends AppCompatActivity implements UserLocationObjec
                                 newObj.addTapListener(new MapObjectTapListener() {
                                     @Override
                                     public boolean onMapObjectTap(@NonNull MapObject mapObject, @NonNull Point point) {
-                                        Log.d("wtf","   "+mapObject.getUserData());
-
-
                                         Intent intent = new Intent(getApplicationContext(), PointsDetails.class);
                                         intent.putExtra("point",mapObject.getUserData().toString());
                                         startActivity(intent);

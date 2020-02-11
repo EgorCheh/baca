@@ -134,7 +134,7 @@ public class PointsDetails extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         Toast.makeText(getApplicationContext(),"super",Toast.LENGTH_LONG).show();
                         listComments.add((HashMap<String, Object>) updateMap);
-                        updateMap.put("date","45");
+                        updateMap.put("date","");
                         adapter.notifyDataSetChanged();
                         hideKeyboard();
                         etComment.setText("");
@@ -253,7 +253,7 @@ public class PointsDetails extends AppCompatActivity {
                        // Date date = (Date) document.getData().get("date");
 
 
-                        comment.put("date","45");
+                        comment.put("date","");
                         listComments.add(comment);
                     }
 
@@ -284,8 +284,24 @@ public class PointsDetails extends AppCompatActivity {
             Picasso.get().load(profile.getProfilePictureUri(20,20)).into(ivUser);
         }else {
             ImageView ivUser = findViewById(R.id.detail_iv_profile);
-            userName = currentUser.getEmail();
             userId= currentUser.getUid();
+            DocumentReference docRef = db.collection("users").document(userId);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                   @Override
+                                                   public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                       if (task.isSuccessful()) {
+                                                           DocumentSnapshot document = task.getResult();
+                                                           assert document != null;
+                                                           if (document.exists()){
+                                                               userName= (String) document.getData().get("user");
+
+                                                           }}
+                                                   }
+                                               });
+
+
+
+
             Picasso.get().load("https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png").resize(20,20).into(ivUser);
             Log.d(TAG,"dddddddddddddddddddd");
         }
