@@ -41,7 +41,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertTrue;
 
 @RunWith(JUnit4.class)
 public class MyAdapterTest extends Context {
@@ -60,6 +63,36 @@ public class MyAdapterTest extends Context {
         assertNotNull(adapter);
 
     }
+    @Test
+    public void empty() throws Exception {
+        HashMap<String, Object> point;
+        ArrayList<HashMap<String, Object>> listPoints = new ArrayList<>();
+        point = new HashMap<>();
+        point.put("title","title");
+        point.put("image","image");
+        listPoints.add(point);
+        String[] from = { "title" ,"image"};
+        int[] to = { R.id.item_tv_title,R.id.item_image_view};
+        MySimpleAdapter adapter = new MySimpleAdapter(this, listPoints, R.layout.item_list_view_points, from, to);
+        assert(adapter.isEmpty());
+
+    }
+    @Test
+    public void count() throws Exception {
+        HashMap<String, Object> point;
+        ArrayList<HashMap<String, Object>> listPoints = new ArrayList<>();
+        point = new HashMap<>();
+        point.put("title","title");
+        point.put("image","image");
+        listPoints.add(point);
+        String[] from = { "title" ,"image"};
+        int[] to = { R.id.item_tv_title,R.id.item_image_view};
+        MySimpleAdapter adapter = new MySimpleAdapter(this, listPoints, R.layout.item_list_view_points, from, to);
+        assertEquals(adapter.getCount(),0);
+
+    }
+
+
 
     @Override
     public AssetManager getAssets() {
